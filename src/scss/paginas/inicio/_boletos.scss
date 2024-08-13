@@ -1,0 +1,164 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.boletos{
+    &__grid{
+        @include m.contenedor-sm;
+        @include m.grid(1, 5rem);
+    }
+    
+}
+
+.boleto{
+    width: min(100% - 5rem, 65rem);
+    margin: 0 auto;
+    padding: 6rem;
+    border-radius: 2rem;
+    color: v.$blanco;
+    position: relative;
+
+    &::before,
+    &::after{
+        position: absolute;
+        content: '';
+        background-color: v.$blanco;
+        width: 5rem;
+        height: 5rem;
+        top: calc(50% - 2.5rem);
+    }
+
+    &::before{
+        clip-path: circle(50% at 25% 50%);
+        left: 0;
+    }
+
+    &::after{
+        clip-path: circle(50% at 75% 50%);
+        right: 0;
+    }
+    
+    &--presencial{
+        background-color:#c099ff;
+        background-image:
+        radial-gradient(at 59% 82%, hsla(275,61%,75%,1) 0px, transparent 50%),
+        radial-gradient(at 54% 64%, hsla(200,98%,67%,1) 0px, transparent 50%),
+        radial-gradient(at 32% 63%, hsla(331,80%,64%,1) 0px, transparent 50%);
+    }
+
+    &--virtual{
+        background-color:#99c3ff;
+        background-image:
+        radial-gradient(at 42% 73%, hsla(185,77%,66%,1) 0px, transparent 50%),
+        radial-gradient(at 79% 82%, hsla(262,78%,65%,1) 0px, transparent 50%),
+        radial-gradient(at 4% 54%, hsla(238,85%,72%,1) 0px, transparent 50%);
+    }
+
+    &--gratis{
+        background-color:#99ffeb;
+        background-image:
+        radial-gradient(at 25% 69%, hsla(204,66%,71%,1) 0px, transparent 50%),
+        radial-gradient(at 38% 91%, hsla(126,74%,60%,1) 0px, transparent 50%),
+        radial-gradient(at 90% 9%, hsla(267,92%,75%,1) 0px, transparent 50%);
+    }
+
+    &__logo{
+        @include m.logo;
+        @include m.texto-fluido(2rem, 4rem);
+    }
+
+    &__plan{
+        font-size: 2rem;
+        text-transform: uppercase;
+        margin: 3rem 0 0 0;
+    }
+
+    &__precio{
+        margin: 3rem 0 0 0;
+        font-weight: v.$black;
+        font-size: 4rem;
+    }
+
+    &__enlace-contenedor{
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__enlace{
+        @include m.boton(v.$azul, v.$blanco);
+        width: auto;
+    }
+
+    $modificador: &;
+
+    &--acceso{
+        width: 30rem;
+        height: 50rem;
+        padding: 10rem 3rem;
+
+        @include m.tablet{
+            width: 60rem;
+            height: 30rem;
+            padding: 6rem;  
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #{$modificador}__logo{
+            @include m.texto-fluido(2rem, 3rem);
+            margin: 0;
+            text-align:left;
+
+        }
+        
+        #{$modificador}__nombre{
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            font-weight: v.$black;
+        }
+
+        #{$modificador}__codigo{
+           font-size: 4rem;
+           font-weight: v.$bold;
+           text-align: center;
+           position: absolute;
+           bottom: 7rem;
+           margin: 0;
+           left: 0;
+           width: 100%;
+
+           @include m.tablet{
+                transform: rotate(90deg);
+                transform-origin: 0 0;
+                width: 30rem;
+                top: 0;
+                left: calc(100% - 5rem);
+           }
+        }
+    }
+
+    &::before{
+        clip-path: circle(50% at 50% 25%);
+        left: calc(50% - 2.5rem);
+        top: 0;
+
+        @include m.tablet{
+            clip-path: circle(50% at 25% 50%);
+            left: 0;
+            top: calc(50% - 2.5rem);
+        }
+    }
+
+    &::after{
+        clip-path: circle(50% at 50% 75%);
+        left: calc(50% - 2.5rem);
+        top: calc(100% - 5rem);
+
+        @include m.tablet{
+            clip-path: circle(50% at 75% 50%);
+            left: calc(100% - 5rem);
+            top:calc(50% - 2.5rem);
+        }
+    }
+}
